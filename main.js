@@ -21,9 +21,20 @@ function _load () {
     }
     let addButton = root.insertAdjacentHTML("afterend", `<button id="add">+</button>`);
 
-    document.querySelectorAll(".removeBtn");
+    function newItem() {
+        root.insertAdjacentHTML("beforeend", listElement);
+        //TODO: addeventlistener az új sorokra is (37-es sor)
+    }
 
-    for (let index = 0; index < rootArray.length; index++) {
+    document.querySelector("#add").addEventListener("click", newItem);
+    
+    function deleteItem(e) {
+        e.target.parentElement.remove();
+    }
+
+    let deleteButtons = root.querySelectorAll(".delete");
+    for (let index = 0; index < deleteButtons.length; index++) {
+        deleteButtons[index].addEventListener("click", deleteItem);
     }
 }
 window.addEventListener("load", _load);
